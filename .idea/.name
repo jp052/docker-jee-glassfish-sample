@@ -1,1 +1,0 @@
-docker-jee-glassfish-sample
