@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="dockerjeeglassfishsample">
+    <output-path>$PROJECT_DIR$/docker-dir/deployment-image</output-path>
+    <root id="archive" name="dockerjeeglassfishsample.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="archive" name="docker-jee-glassfish-sample.jar">
+            <element id="module-output" name="docker-jee-glassfish-sample" />
+          </element>
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
