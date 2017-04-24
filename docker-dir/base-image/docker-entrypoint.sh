@@ -11,7 +11,7 @@ echo "AS_ADMIN_NEWPASSWORD=${ADMIN_PASSWORD}" >> /tmp/glassfishpwd
 asadmin --user=admin --passwordfile=/tmp/glassfishpwd change-admin-password --domain_name domain1
 asadmin start-domain
 echo "AS_ADMIN_PASSWORD=${ADMIN_PASSWORD}" > /tmp/glassfishpwd
-asadmin --user=admin --passwordfile=/tmp/glassfishpwd enable-secure-admin
+asadmin --user=admin --passwordfile=/tmp/glassfishpwd --port 4848 enable-secure-admin
 asadmin --user=admin stop-domain
 rm /tmp/glassfishpwd
 exec "$@"

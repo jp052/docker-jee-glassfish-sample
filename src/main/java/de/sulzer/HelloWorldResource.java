@@ -8,6 +8,6 @@ import javax.ws.rs.Path;
 public class HelloWorldResource {
     @GET
     public String show() {
-        return "Hello World 1!";
+        return "Hello World 2!";
     }
 }

@@ -1,7 +1,5 @@
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-#
 # Copyright (c) 2017 Oracle and/or its affiliates. All rights reserved.
-#
 # GlassFish on Docker with Oracle Linux and OpenJDK
 FROM oraclelinux:latest
 
@@ -27,6 +25,7 @@ RUN yum -y install wget unzip java-1.8.0-openjdk-devel && \
     yum -y remove wget unzip && rm -rf /var/cache/yum/*
 
 COPY docker-entrypoint.sh /entrypoint.sh
+RUN ["chmod", "+x", "entrypoint.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
 
 # Ports being exposed
