@@ -97,6 +97,7 @@ local.properties
 derby.log
 
 docker-dir/deployment-image/shared/*
+!docker-dir/deployment-image/shared/.gitkeep
 
 
 ######################
