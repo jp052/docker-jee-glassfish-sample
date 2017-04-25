@@ -1,3 +1,3 @@
 FROM base-image:latest
 
-COPY dockerjeeglassfishsample.war glassfish4/glassfish/domains/domain1/autodeploy/dockerjeeglassfishsample.war
+COPY shared/dockerjeeglassfishsample.war glassfish4/glassfish/domains/domain1/autodeploy/dockerjeeglassfishsample.war

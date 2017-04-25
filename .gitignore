@@ -96,6 +96,8 @@ local.properties
 # Testing environment specific
 derby.log
 
+docker-dir/deployment-image/shared/*
+
 
 ######################
 # Liberty tools
