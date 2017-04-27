@@ -31,5 +31,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 # Ports being exposed
 EXPOSE 4848 8080 8181
 
-# Start asadmin console and the domain
-CMD ["asadmin", "start-domain", "-v"]
+
