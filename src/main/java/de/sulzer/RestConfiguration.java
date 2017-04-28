@@ -1,4 +1,4 @@
-package main.java.de.sulzer;
+package de.sulzer;
 
 
 import javax.ws.rs.ApplicationPath;
