@@ -18,7 +18,7 @@ public class OperationService {
 
     private Client client;
     private WebTarget webTarget;
-    static final String ADDITION_URI = "http://192.168.99.100:8282/docker-jee-glassfish-sample-2-1.0/resources/addition";
+    static final String ADDITION_URI = "http://192.168.99.100:8282/microservice-2-1.0/resources/addition";
 
     @PostConstruct
     public void init() {
