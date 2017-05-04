@@ -23,6 +23,7 @@ public class OperationResource {
 
         int result = operationService.add(1, 2);
         JsonObject jsonResult = Json.createObjectBuilder().
+                add("service", "service 1").
                 add("result", result).
                 build();
         return jsonResult;

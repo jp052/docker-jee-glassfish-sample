@@ -17,13 +17,13 @@ public class OperationService {
     }*/
 
     private Client client;
-    private WebTarget tut;
+    private WebTarget webTarget;
     static final String ADDITION_URI = "http://192.168.99.100:8282/docker-jee-glassfish-sample-2-1.0/resources/addition";
 
     @PostConstruct
     public void init() {
         this.client = ClientBuilder.newClient();
-        this.tut = this.client.target(ADDITION_URI);
+        this.webTarget = this.client.target(ADDITION_URI);
     }
 
     public int add(int a, int b) {
@@ -31,7 +31,7 @@ public class OperationService {
                 add("a", a).
                 add("b", b).
                 build();
-        Response response = this.tut.
+        Response response = this.webTarget.
                 request(MediaType.APPLICATION_JSON).
                 post(json(input));
 
