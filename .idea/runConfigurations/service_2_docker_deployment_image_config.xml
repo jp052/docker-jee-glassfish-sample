@@ -1,0 +1,46 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="service 2 docker deployment-image config" type="docker-deploy" factoryName="Docker Deployment" server-name="Docker">
+    <deployment type="dockerfile" path="$PROJECT_DIR$/microservice-2/docker-dir/deployment-image/Dockerfile">
+      <settings>
+        <option name="JSONFilePath" value="" />
+        <option name="command" value="" />
+        <option name="containerName" value="microservice-2-container" />
+        <option name="entrypoint" value="" />
+        <option name="imageTag" value="microservice-2-image" />
+        <option name="portBindings">
+          <list>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="8080" />
+              <option name="hostIp" value="" />
+              <option name="hostPort" value="8282" />
+            </DockerPortBindingImpl>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="4848" />
+              <option name="hostIp" value="" />
+              <option name="hostPort" value="4949" />
+            </DockerPortBindingImpl>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="8002" />
+              <option name="hostIp" value="" />
+              <option name="hostPort" value="8003" />
+            </DockerPortBindingImpl>
+          </list>
+        </option>
+        <option name="portBindingsExpanded" value="true" />
+        <option name="startBrowserSettings">
+          <browser start="true" url="http://192.168.99.100:8282/microservice-2-1.0/resources/addition" />
+        </option>
+        <option name="volumeBindings">
+          <list>
+            <DockerVolumeBindingImpl>
+              <option name="containerPath" value="/glassfish4/glassfish/domains/domain1/autodeploy/" />
+              <option name="hostPath" value="/c/microservice-2/shared" />
+            </DockerVolumeBindingImpl>
+          </list>
+        </option>
+        <option name="volumeBindingsExpanded" value="true" />
+      </settings>
+    </deployment>
+    <method />
+  </configuration>
+</component>
