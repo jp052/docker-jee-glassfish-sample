@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
 public class OperationResourceIT {
     private Client client;
     private WebTarget webTarget;
-    static final String ADDITION_URI = "http://192.168.99.100:8080/docker-jee-glassfish-sample-1.0/resources/operations/addition";
+    static final String ADDITION_URI = "http://192.168.99.100:8080/microservice-1-1.0/resources/operations/addition";
 
     @Before
     public void init() {
