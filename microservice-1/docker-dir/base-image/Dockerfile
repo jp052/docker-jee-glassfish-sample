@@ -32,4 +32,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 EXPOSE 4848 8080 8181 9009
 
 # Start asadmin console and the domain
-CMD ["asadmin", "start-domain", "-v", "-d"]
+#CMD ["asadmin", "start-domain", "-v", "-d"]

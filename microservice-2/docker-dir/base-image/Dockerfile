@@ -29,7 +29,7 @@ RUN ["chmod", "+x", "entrypoint.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
 
 # Ports being exposed
-EXPOSE 4848 8080 8181
+EXPOSE 4848 8080 8181 9009
 
 # Start asadmin console and the domain
-CMD ["asadmin", "start-domain", "-v"]
+#CMD ["asadmin", "start-domain", "-v", "-d"]
