@@ -24,6 +24,12 @@ RUN yum -y install wget unzip java-1.8.0-openjdk-devel && \
     rm -f $GLASSFISH_PKG && \
     yum -y remove wget unzip && rm -rf /var/cache/yum/*
 
+#Postgres client
+#Hibernate
+COPY shared/libraries/jboss-logging-3.3.0.Final.jar glassfish4/glassfish/modules/jboss-logging.jar
+
+COPY shared/libraries/* glassfish4/glassfish/domains/domain1/lib/
+
 COPY docker-entrypoint.sh /entrypoint.sh
 RUN ["chmod", "+x", "entrypoint.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
