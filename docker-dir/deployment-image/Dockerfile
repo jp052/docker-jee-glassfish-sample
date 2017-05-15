@@ -1,6 +1,6 @@
 FROM base-image:latest
 
-COPY shared/microservice-1-1.0.war glassfish4/glassfish/domains/domain1/autodeploy/microservice-1-1.0.war
+COPY /shared/dockerjeeglassfishsample.war /glassfish4/glassfish/domains/domain1/autodeploy/dockerjeeglassfishsample.war
 
 # Start asadmin console and the domain
 CMD ["asadmin", "start-domain", "-v"]
