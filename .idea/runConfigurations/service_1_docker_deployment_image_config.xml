@@ -34,7 +34,7 @@
           <list>
             <DockerVolumeBindingImpl>
               <option name="containerPath" value="/glassfish4/glassfish/domains/domain1/autodeploy/" />
-              <option name="hostPath" value="/c/microservice-1/shared" />
+              <option name="hostPath" value="/c/pqm/docker-jee-glassfish-sample/microservice-1/docker-dir/deployment-image/shared" />
             </DockerVolumeBindingImpl>
           </list>
         </option>
