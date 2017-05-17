@@ -1,0 +1,33 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="payara-micro postgresql" type="docker-deploy" factoryName="Docker Deployment" server-name="Docker">
+    <deployment type="dockerfile" path="$PROJECT_DIR$/payara-micro/docker-dir/base-image/Dockerfile">
+      <settings>
+        <option name="JSONFilePath" value="" />
+        <option name="command" value="" />
+        <option name="containerName" value="payara-micro-container" />
+        <option name="entrypoint" value="" />
+        <option name="imageTag" value="payara-micro-image" />
+        <option name="portBindings">
+          <list>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="4848" />
+              <option name="hostIp" value="" />
+              <option name="hostPort" value="4848" />
+            </DockerPortBindingImpl>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="8080" />
+              <option name="hostIp" value="" />
+              <option name="hostPort" value="8080" />
+            </DockerPortBindingImpl>
+          </list>
+        </option>
+        <option name="portBindingsExpanded" value="true" />
+        <option name="startBrowserSettings">
+          <browser name="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" start="true" url="http://192.168.99.100:8080/microservice-3-1.0/resources/test/list" />
+        </option>
+        <option name="volumeBindingsExpanded" value="true" />
+      </settings>
+    </deployment>
+    <method />
+  </configuration>
+</component>
