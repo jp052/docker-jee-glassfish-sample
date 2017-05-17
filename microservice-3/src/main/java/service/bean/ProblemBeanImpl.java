@@ -5,6 +5,7 @@ import service.facade.ProblemBeanFacade;
 
 import javax.ejb.Stateless;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by myuser on 10.05.2017.
@@ -15,14 +16,18 @@ public class ProblemBeanImpl implements ProblemBeanFacade {
     @PersistenceContext
     private EntityManager em;
 
-    public String readProblemTitle(Long id ) {
-        Problem p1 = em.find(Problem.class, id);
-        return p1.getTitle();
+    @Override
+    public List readAllProblems() {
+        return em.createQuery("SELECT p FROM Problem p").getResultList();
     }
 
-    public String writeProblemTitle(Long id ) {
-        Problem p1 = em.find(Problem.class, id);
-        p1.setTitle("modified 2");
-        return p1.getTitle();
+    @Override
+    public Problem readProblem(Long id) {
+        List problemList =
+                em.createQuery("SELECT p FROM Problem p where p.id = :id")
+                .setParameter("id", id).getResultList();
+
+        return (problemList.isEmpty() ? null : (Problem) problemList.get(0));
     }
+
 }
