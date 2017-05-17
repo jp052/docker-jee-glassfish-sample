@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import static javax.persistence.GenerationType.*;
+
 /**
  * Created by myuser on 10.05.2017.
  */
@@ -12,6 +14,12 @@ import java.util.Date;
 public class Problem implements Serializable {
 
     @Id
+    @GeneratedValue(strategy=IDENTITY, generator="prob_seq" )
+    @SequenceGenerator(
+            name="prob_seq",
+            sequenceName="t_problem_id_seq",
+            allocationSize=1
+    )
     private Long id;
 
     @Column

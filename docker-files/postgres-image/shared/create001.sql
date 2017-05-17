@@ -8,7 +8,7 @@ insert into T_KPI(id, text) VALUES (1002, 'Schiebedach');
 insert into T_KPI(id, text) VALUES (1003, 'Bremspedal');
 
 CREATE TABLE T_PROBLEM (
-    id       integer PRIMARY KEY,
+    id       SERIAL PRIMARY KEY,
     title    varchar(400),
     module   varchar(4),
     termin   date,
@@ -28,6 +28,8 @@ insert into T_PROBLEM(id, title, module, termin, status, kpi_id) VALUES (1005, '
 insert into T_PROBLEM(id, title, module, termin, status, kpi_id) VALUES (1006, 'Schiebedach gesprungen', 'IB03', to_date('25.04.2017', 'DD.MM.YYYY'), 30, 1002);
 insert into T_PROBLEM(id, title, module, termin, status, kpi_id) VALUES (1007, 'Sporadisch hartes Bremspedal', 'ABC',  to_date('22.04.2017', 'DD.MM.YYYY'), 10, 1003);
 insert into T_PROBLEM(id, title, module, termin, status, kpi_id) VALUES (1008, 'Sporadisch hartes Bremspedal', 'FEG',  to_date('22.04.2017', 'DD.MM.YYYY'), 10, 1003);
+
+ALTER SEQUENCE t_problem_id_seq RESTART WITH 10001;
 
 commit;
 
