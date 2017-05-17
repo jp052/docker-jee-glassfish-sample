@@ -6,6 +6,7 @@
     <persistence-unit name="problemPU" transaction-type="JTA">
         <jta-data-source>jdbc/problem_pool</jta-data-source>
 
+        <class>persistence.model.Kpi</class>
         <class>persistence.model.Problem</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
