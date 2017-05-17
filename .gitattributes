@@ -1,0 +1,23 @@
+#This file overrides core.autocrlf, it is  used to make sure everyone uses the same line ending.
+#Source: https://help.github.com/articles/dealing-with-line-endings/
+
+##Active settings:
+# Make sure bash scripts always use LF as line ending
+*.sh text eol=lf
+
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+
+##Examples:
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout.
+#*.c text
+#*.h text
+
+# Declare files that will always have CRLF line endings on checkout.
+#*.sln text eol=crlf
+
+# Denote all files that are truly binary and should not be modified.
+#*.png binary
+#*.jpg binary
