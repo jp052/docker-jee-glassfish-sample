@@ -10,13 +10,13 @@ FROM payara/micro
 
 #COPY shared/libraries/* /opt/payara41/glassfish/domains/domain1/lib/
 
-COPY shared/microservice-3-1.0.war /opt/payara/deployments/microservice-3-1.0.war
+COPY microservice-3-1.0.war /opt/payara/deployments/microservice-3-1.0.war
 
 #COPY shared/domain.xml /opt/payara/domain.xml
 
-COPY shared/payara-micro.jar /opt/payara/payara-micro.jar
+COPY libraries/payara-micro.jar /opt/payara/payara-micro.jar
 
-COPY shared/libraries/postgresql-42.1.1.jar /opt/jdbc/postgresql-42.1.1.jar
+COPY libraries/postgresql-42.1.1.jar /opt/jdbc/postgresql-42.1.1.jar
 
 # Ports being exposed
 EXPOSE 4848 8080 8181 9009
