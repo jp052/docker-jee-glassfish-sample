@@ -7,6 +7,7 @@ import service.facade.ProblemBeanFacade;
 import javax.ejb.EJB;
 import javax.json.*;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,22 +62,48 @@ public class HelloWorldResource {
     }
 
     @PUT
-    @Path("update")
-    public String update(@QueryParam("id") Long problemId, JsonObject input) {
-        String ret = problemBean.readProblem(1005L).getTitle();
-        return "Hello World 111! " + ret;
+    @Path("update/{xid}")
+    public JsonObject update(@PathParam("xid") Long problemId, JsonObject input) {
+        Problem problem = problemBean.updateProblem(problemId, input);
+        return convertProblem(problem).build();
     }
-/*
+
     @POST
     @Path("insert")
-    public String insert(JsonObject input) {
-        String ret = problemBean.writeProblemTitle(1005L);
-        return "Hello World 111! " + ret;
+    public JsonObject insert(JsonObject input) {
+        Problem problem = problemBean.insertProblem(input);
+        return convertProblem(problem).build();
     }
 
     @DELETE
-    @Path("delete")
-    public String delete(JsonObject input) {
+    @Path("remove/{xid}")
+    public Response remove(@PathParam("xid") Long problemId) {
+        Problem problem = problemBean.deleteProblem(problemId);
+        return (problem != null ? Response.ok().build() : Response.noContent().build());
+    }
+
+
+    private JsonObjectBuilder convertProblem(Problem problem) {
+        JsonBuilderFactory factory = Json.createBuilderFactory(null);
+        JsonObjectBuilder returnValue = factory.createObjectBuilder();
+        if (problem != null) {
+            returnValue
+                    .add("id", problem.getId())
+                    .add("title", problem.getTitle())
+                    .add("modul", problem.getModule())
+                    .add("termin", problem.getTermin().toString())
+                    .add("status", problem.getStatus())
+                    .add("kpi", problem.getKpi() == null ? factory.createObjectBuilder() : factory.createObjectBuilder().add("id", problem.getKpi().getId()).add("text", problem.getKpi().getText()));
+
+        }
+
+        return returnValue;
+    }
+
+    /*
+    @POST
+    @Path("insert")
+    public String insert(JsonObject input) {
         String ret = problemBean.writeProblemTitle(1005L);
         return "Hello World 111! " + ret;
     }
