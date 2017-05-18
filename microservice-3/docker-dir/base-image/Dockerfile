@@ -30,12 +30,17 @@ COPY shared/libraries/jboss-logging-3.3.0.Final.jar glassfish4/glassfish/modules
 
 COPY shared/libraries/* glassfish4/glassfish/domains/domain1/lib/
 
-COPY docker-entrypoint.sh /entrypoint.sh
-RUN ["chmod", "+x", "entrypoint.sh"]
-ENTRYPOINT ["/entrypoint.sh"]
+#Execute Glassfish configs
+COPY glassfish-custom-config.sh /glassfish-custom-config.sh
+RUN ["chmod", "+x", "glassfish-custom-config.sh"]
+RUN /glassfish-custom-config.sh
+
+#COPY docker-entrypoint.sh /entrypoint.sh
+#RUN ["chmod", "+x", "entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
 
 # Ports being exposed
 EXPOSE 4848 8080 8181 9009
 
 # Start asadmin console and the domain
-#CMD ["asadmin", "start-domain", "-v", "-d"]
+CMD ["asadmin", "start-domain", "-v", "-d"]
