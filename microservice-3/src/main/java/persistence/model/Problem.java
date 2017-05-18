@@ -14,10 +14,10 @@ import static javax.persistence.GenerationType.*;
 public class Problem implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=IDENTITY, generator="prob_seq" )
+    @GeneratedValue(strategy=SEQUENCE, generator="prob_seq" )
     @SequenceGenerator(
             name="prob_seq",
-            sequenceName="t_problem_id_seq",
+            sequenceName="sequence_problem",
             allocationSize=1
     )
     private Long id;
