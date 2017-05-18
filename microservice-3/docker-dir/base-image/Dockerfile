@@ -30,6 +30,8 @@ COPY shared/libraries/jboss-logging-3.3.0.Final.jar glassfish4/glassfish/modules
 
 COPY shared/libraries/* glassfish4/glassfish/domains/domain1/lib/
 
+COPY shared/glassfish/domain.xml glassfish4/glassfish/domains/domain1/config/domain.xml
+
 COPY docker-entrypoint.sh /entrypoint.sh
 RUN ["chmod", "+x", "entrypoint.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
@@ -38,4 +40,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 EXPOSE 4848 8080 8181 9009
 
 # Start asadmin console and the domain
-#CMD ["asadmin", "start-domain", "-v", "-d"]
+CMD ["asadmin", "start-domain", "-v", "-d"]

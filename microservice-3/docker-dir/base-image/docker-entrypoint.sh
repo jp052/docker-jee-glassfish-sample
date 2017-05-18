@@ -15,8 +15,8 @@ asadmin --user=admin --passwordfile=/tmp/glassfishpwd --port 4848 enable-secure-
 
 
 # connection pool für problem-db (postgres)
-asadmin --user=admin --passwordfile=/tmp/glassfishpwd create-jdbc-connection-pool --datasourceclassname org.postgresql.ds.PGConnectionPoolDataSource --restype javax.sql.ConnectionPoolDataSource --property portNumber=5432:user=docker:password=docker:serverName=192.168.99.100:databaseName=docker problem_pool
-asadmin --user=admin --passwordfile=/tmp/glassfishpwd create-jdbc-resource --connectionpoolid problem_pool jdbc/problem_pool
+# asadmin --user=admin --passwordfile=/tmp/glassfishpwd create-jdbc-connection-pool --datasourceclassname org.postgresql.ds.PGConnectionPoolDataSource --restype javax.sql.ConnectionPoolDataSource --property portNumber=5432:user=docker:password=docker:serverName=192.168.99.100:databaseName=docker problem_pool
+# asadmin --user=admin --passwordfile=/tmp/glassfishpwd create-jdbc-resource --connectionpoolid problem_pool jdbc/problem_pool
 
 asadmin --user=admin stop-domain
 rm /tmp/glassfishpwd
