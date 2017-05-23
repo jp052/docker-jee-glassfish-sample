@@ -1,0 +1,27 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="nginx-image config" type="docker-deploy" factoryName="Docker Deployment" server-name="Docker">
+    <deployment type="dockerfile" path="$PROJECT_DIR$/docker-files/nginx-image/Dockerfile">
+      <settings>
+        <option name="JSONFilePath" value="" />
+        <option name="command" value="" />
+        <option name="containerName" value="nginx-container" />
+        <option name="entrypoint" value="" />
+        <option name="imageTag" value="nginx-image" />
+        <option name="portBindings">
+          <list>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="80" />
+              <option name="hostIp" value="" />
+              <option name="hostPort" value="80" />
+            </DockerPortBindingImpl>
+          </list>
+        </option>
+        <option name="portBindingsExpanded" value="true" />
+        <option name="startBrowserSettings">
+          <browser />
+        </option>
+      </settings>
+    </deployment>
+    <method />
+  </configuration>
+</component>
