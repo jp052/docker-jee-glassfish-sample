@@ -100,13 +100,4 @@ public class HelloWorldResource {
         return returnValue;
     }
 
-    /*
-    @POST
-    @Path("insert")
-    public String insert(JsonObject input) {
-        String ret = problemBean.writeProblemTitle(1005L);
-        return "Hello World 111! " + ret;
-    }
-
-*/
 }

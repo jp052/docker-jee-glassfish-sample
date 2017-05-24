@@ -1,9 +1,13 @@
 package service.bean;
 
+import global.service.PQMBean;
+import jms.MySender;
 import persistence.model.Problem;
 import service.facade.ProblemBeanFacade;
+import tools.interceptors.PQMInterceptor;
 
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.json.JsonObject;
 import javax.persistence.*;
 import java.util.Date;
@@ -13,13 +17,11 @@ import java.util.List;
  * Created by myuser on 10.05.2017.
  */
 @Stateless
-public class ProblemBeanImpl implements ProblemBeanFacade {
-
-    @PersistenceContext
-    private EntityManager em;
+public class ProblemBeanImpl extends PQMBean implements ProblemBeanFacade {
 
     @Override
     public List readAllProblems() {
+        new MySender().send("Huhu");
         return em.createQuery("SELECT p FROM Problem p").getResultList();
     }
 
