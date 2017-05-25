@@ -11,7 +11,8 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Stateless
-@Path("messages")
+@Path("/messages")
+@Produces(MediaType.APPLICATION_JSON)
 public class MessageResource {
 
     @Inject
@@ -45,7 +46,6 @@ public class MessageResource {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_XML)
     public List<Message> list() {
         //TODO
         return messageService.getAllMessages();
