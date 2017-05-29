@@ -12,7 +12,7 @@ import java.util.List;
 
 @Stateless
 @Path("/messages")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public class MessageResource {
 
     @Inject
