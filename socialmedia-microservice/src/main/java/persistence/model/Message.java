@@ -3,21 +3,22 @@ package persistence.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
+import java.util.Date;
 
 @XmlRootElement
 public class Message {
     private long id;
     private String message;
-    private LocalDate created;
+    private Date created; //LocalDate not parsed by Json parser :-(
     private String author;
 
     public Message() {
     }
 
-    public Message(long id, String message, LocalDate created, String author) {
+    public Message(long id, String message, String author) {
         this.id = id;
         this.message = message;
-        this.created = created;
+        this.created = new Date();
         this.author = author;
     }
 
@@ -37,11 +38,11 @@ public class Message {
         this.message = message;
     }
 
-    public LocalDate getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 

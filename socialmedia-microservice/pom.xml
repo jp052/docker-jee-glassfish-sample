@@ -35,6 +35,12 @@
       <version>7.0</version>
       <scope>provided</scope>
     </dependency>
+      <!-- possible workaround instead editing org.eclipse.persistence.moxy.jar
+      <dependency>
+          <groupId>org.glassfish.jersey.media</groupId>
+          <artifactId>jersey-media-moxy</artifactId>
+          <version>2.25.1</version>
+      </dependency>-->
   </dependencies>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>

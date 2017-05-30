@@ -12,42 +12,50 @@ import java.util.List;
 
 @Stateless
 @Path("/messages")
-@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class MessageResource {
 
     @Inject
     MessageServiceMock messageService;
 
     @POST
-    public JsonObject create() {
-        //TODO
-        return null;
+    public Message create(Message message) {
+        Message createdMessage = messageService.addMessage(message);
+        return createdMessage;
     }
 
     @GET
-    @Path("{messageId}")
-    public JsonObject read(@QueryParam("messageId") Long messageId) {
-        //TODO
-        return null;
+    @Path("/{messageId}")
+    public Message read(@PathParam("messageId") long id) { //automatically converted to from string parameter to long
+        Message messageById = messageService.getMessageById(id);
+        return messageById;
     }
 
     @PUT
-    @Path("{messageId}")
-    public JsonObject update() {
-        //TODO
-        return null;
+    @Path("/{messageId}")
+    public Message update(@PathParam("messageId") long id, Message message) {
+        message.setId(id);
+        Message updatedMessage = messageService.updateMessage(message);
+        return updatedMessage;
     }
 
     @DELETE
-    @Path("{messageId}")
-    public JsonObject delete() {
-        //TODO
-        return null;
+    @Path("/{messageId}")
+    public void delete(@PathParam("messageId") long id) {
+        messageService.deleteMessage(id);
     }
 
     @GET
-    public List<Message> list() {
-        //TODO
+    public List<Message> list(  @QueryParam("year") int year,
+                                @QueryParam("start") int start,
+                                @QueryParam("size") int size) {
+        if(year > 0) {
+            return messageService.getAllMessagesByYear(year);
+        }
+        if(start >= 0 & size > 0) {
+            return messageService.getAllMessagesPaginated(start, size);
+        }
         return messageService.getAllMessages();
     }
 }
