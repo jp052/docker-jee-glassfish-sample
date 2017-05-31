@@ -24,7 +24,7 @@ RUN yum -y install wget unzip java-1.8.0-openjdk-devel && \
     rm -f $GLASSFISH_PKG && \
     yum -y remove wget unzip && rm -rf /var/cache/yum/*
 
-COPY shared/domain.xml glassfish4/glassfish/domains/domain1/config/domain.xml
+# COPY shared/domain.xml glassfish4/glassfish/domains/domain1/config/domain.xml
 
 COPY shared/imqbrokerd.conf /glassfish4/mq/etc/imqbrokerd.conf
 

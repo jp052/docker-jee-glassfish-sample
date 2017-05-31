@@ -1,12 +1,9 @@
 package service.bean;
 
 import persistence.model.Kpi;
-import persistence.model.Problem;
 import service.facade.KpiBeanFacade;
-import service.facade.ProblemBeanFacade;
 
 import javax.ejb.Stateless;
-import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Date;

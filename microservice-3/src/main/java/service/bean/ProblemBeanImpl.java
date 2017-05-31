@@ -1,15 +1,13 @@
 package service.bean;
 
 import global.service.PQMBean;
-import jms.MySender;
+import jms.facade.MyQueueFacade;
 import persistence.model.Problem;
-import service.facade.ProblemBeanFacade;
-import tools.interceptors.PQMInterceptor;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
+import javax.enterprise.context.Dependent;
 import javax.json.JsonObject;
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -17,15 +15,16 @@ import java.util.List;
  * Created by myuser on 10.05.2017.
  */
 @Stateless
-public class ProblemBeanImpl extends PQMBean implements ProblemBeanFacade {
+public class ProblemBeanImpl extends PQMBean {
 
-    @Override
-    public List readAllProblems() {
-        new MySender().send("Huhu");
+    @EJB
+    private MyQueueFacade mySender;
+
+    public List<Problem> readAllProblems() {
+        mySender.send("Huhu");
         return em.createQuery("SELECT p FROM Problem p").getResultList();
     }
 
-    @Override
     public Problem readProblem(Long id) {
         List problemList =
                 em.createQuery("SELECT p FROM Problem p where p.id = :id")
@@ -34,7 +33,6 @@ public class ProblemBeanImpl extends PQMBean implements ProblemBeanFacade {
         return (problemList.isEmpty() ? null : (Problem) problemList.get(0));
     }
 
-    @Override
     public Problem deleteProblem(Long id) {
         Problem problem = em.find(Problem.class, id);
         if (problem != null) {
@@ -43,7 +41,6 @@ public class ProblemBeanImpl extends PQMBean implements ProblemBeanFacade {
         return problem;
     }
 
-    @Override
     public Problem updateProblem(Long id, JsonObject newValues) {
         Problem problem = em.find(Problem.class, id);
         if (problem != null) {
@@ -55,7 +52,6 @@ public class ProblemBeanImpl extends PQMBean implements ProblemBeanFacade {
         return problem;
     }
 
-    @Override
     public Problem insertProblem(JsonObject newValues) {
         Problem problem = new Problem();
         problem.setTitle(newValues.getString("title"));

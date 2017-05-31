@@ -16,5 +16,4 @@ public class PQMBean {
     @PersistenceContext
     protected EntityManager em;
 
-
 }

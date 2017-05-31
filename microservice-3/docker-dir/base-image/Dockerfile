@@ -30,6 +30,8 @@ COPY shared/libraries/jboss-logging-3.3.0.Final.jar glassfish4/glassfish/modules
 
 COPY shared/libraries/* glassfish4/glassfish/domains/domain1/lib/
 
+#COPY shared/glassfish/domain.xml glassfish4/glassfish/domains/domain1/config/domain.xml
+
 #Execute Glassfish configs
 COPY glassfish-custom-config.sh /glassfish-custom-config.sh
 RUN ["chmod", "+x", "glassfish-custom-config.sh"]
