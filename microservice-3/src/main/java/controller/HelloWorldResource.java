@@ -1,25 +1,29 @@
 package controller;
 
 
+import jms.facade.MyQueueFacade;
 import persistence.model.Problem;
-import service.facade.ProblemBeanFacade;
+import service.bean.ProblemBeanImpl;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.json.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 
 @Path("problem")
 public class HelloWorldResource {
 
+    @Inject
+    ProblemBeanImpl problemBean;
+
     @EJB
-    ProblemBeanFacade problemBean;
+    MyQueueFacade myQueue;
 
     @GET
     @Path("list")
-     public JsonArray list(
+    public JsonArray list(
             @DefaultValue("") @QueryParam("title") String filterTitle,
             @DefaultValue("") @QueryParam("modul") String filterModul
     ) {
@@ -29,7 +33,7 @@ public class HelloWorldResource {
         returnList.forEach(c -> {
             if (
                     (filterTitle == null || filterTitle.isEmpty() || c.getTitle().contains(filterTitle)) &&
-                    (filterModul == null || filterModul.isEmpty() || c.getModule().contains(filterModul))) {
+                            (filterModul == null || filterModul.isEmpty() || c.getModule().contains(filterModul))) {
                 list.add(factory.createObjectBuilder()
                         .add("id", c.getId())
                         .add("title", c.getTitle())
@@ -50,13 +54,13 @@ public class HelloWorldResource {
         Problem problem = problemBean.readProblem(problemId);
         JsonBuilderFactory factory = Json.createBuilderFactory(null);
         JsonObjectBuilder returnValue = factory.createObjectBuilder();
-            returnValue
-                    .add("id", problem.getId())
-                    .add("title", problem.getTitle())
-                    .add("modul", problem.getModule())
-                    .add("termin", problem.getTermin().toString())
-                    .add("status", problem.getStatus())
-                    .add("kpi", problem.getKpi() == null ? factory.createObjectBuilder() : factory.createObjectBuilder().add("id", problem.getKpi().getId()).add("text", problem.getKpi().getText()));
+        returnValue
+                .add("id", problem.getId())
+                .add("title", problem.getTitle())
+                .add("modul", problem.getModule())
+                .add("termin", problem.getTermin().toString())
+                .add("status", problem.getStatus())
+                .add("kpi", problem.getKpi() == null ? factory.createObjectBuilder() : factory.createObjectBuilder().add("id", problem.getKpi().getId()).add("text", problem.getKpi().getText()));
 
         return returnValue.build();
     }
@@ -100,13 +104,16 @@ public class HelloWorldResource {
         return returnValue;
     }
 
-    /*
-    @POST
-    @Path("insert")
-    public String insert(JsonObject input) {
-        String ret = problemBean.writeProblemTitle(1005L);
-        return "Hello World 111! " + ret;
+    @GET
+    @Path("queue")
+    public JsonObject queue() {
+        JsonBuilderFactory factory = Json.createBuilderFactory(null);
+        JsonObjectBuilder returnValue = factory.createObjectBuilder();
+
+        int count = myQueue.browse();
+        returnValue.add("Messages", count);
+
+        return returnValue.build();
     }
 
-*/
 }

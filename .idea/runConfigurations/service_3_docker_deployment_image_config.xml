@@ -24,6 +24,11 @@
               <option name="hostIp" value="" />
               <option name="hostPort" value="8004" />
             </DockerPortBindingImpl>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="9009" />
+              <option name="hostIp" value="" />
+              <option name="hostPort" value="9009" />
+            </DockerPortBindingImpl>
           </list>
         </option>
         <option name="portBindingsExpanded" value="true" />

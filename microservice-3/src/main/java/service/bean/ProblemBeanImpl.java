@@ -1,11 +1,13 @@
 package service.bean;
 
+import global.service.PQMBean;
+import jms.facade.MyQueueFacade;
 import persistence.model.Problem;
-import service.facade.ProblemBeanFacade;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.enterprise.context.Dependent;
 import javax.json.JsonObject;
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -13,17 +15,16 @@ import java.util.List;
  * Created by myuser on 10.05.2017.
  */
 @Stateless
-public class ProblemBeanImpl implements ProblemBeanFacade {
+public class ProblemBeanImpl extends PQMBean {
 
-    @PersistenceContext
-    private EntityManager em;
+    @EJB
+    private MyQueueFacade mySender;
 
-    @Override
-    public List readAllProblems() {
+    public List<Problem> readAllProblems() {
+        mySender.send("Huhu");
         return em.createQuery("SELECT p FROM Problem p").getResultList();
     }
 
-    @Override
     public Problem readProblem(Long id) {
         List problemList =
                 em.createQuery("SELECT p FROM Problem p where p.id = :id")
@@ -32,7 +33,6 @@ public class ProblemBeanImpl implements ProblemBeanFacade {
         return (problemList.isEmpty() ? null : (Problem) problemList.get(0));
     }
 
-    @Override
     public Problem deleteProblem(Long id) {
         Problem problem = em.find(Problem.class, id);
         if (problem != null) {
@@ -41,7 +41,6 @@ public class ProblemBeanImpl implements ProblemBeanFacade {
         return problem;
     }
 
-    @Override
     public Problem updateProblem(Long id, JsonObject newValues) {
         Problem problem = em.find(Problem.class, id);
         if (problem != null) {
@@ -53,7 +52,6 @@ public class ProblemBeanImpl implements ProblemBeanFacade {
         return problem;
     }
 
-    @Override
     public Problem insertProblem(JsonObject newValues) {
         Problem problem = new Problem();
         problem.setTitle(newValues.getString("title"));
