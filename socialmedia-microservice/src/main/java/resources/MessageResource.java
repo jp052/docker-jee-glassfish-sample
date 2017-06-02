@@ -6,7 +6,6 @@ import service.MessageServiceMock;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.json.JsonObject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -19,6 +18,9 @@ public class MessageResource {
 
     @Inject
     MessageServiceMock messageService;
+
+    @Inject
+    CommentResource commentSubResource;
 
     @POST
     public Message create(Message message) {
@@ -59,10 +61,11 @@ public class MessageResource {
     }
 
     /**
-     * This is how to implement a sub-resource, just return the resource class.
+     * This is is the comment sub-resource of MessageResource. It delegates all calls to {messageId}/comments to the CommentResource.
+     * The messageId can be access by the CommentResource using the @PathParam annotation.
      */
     @Path("{messageId}/comments")
     public CommentResource getCommentResource() {
-        return new CommentResource();
+        return commentSubResource;
     }
 }

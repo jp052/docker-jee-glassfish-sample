@@ -46,7 +46,7 @@ public class ProfileResource {
 
     @GET
     public List<Profile> listProfile() {
-        List<Profile> allProfiles = profileService.listProfile();
+        List<Profile> allProfiles = profileService.listProfiles();
         return allProfiles;
     }
 

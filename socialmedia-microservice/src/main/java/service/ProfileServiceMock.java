@@ -36,7 +36,7 @@ public class ProfileServiceMock {
         profiles.remove(profileName);
     }
 
-    public List<Profile> listProfile() {
+    public List<Profile> listProfiles() {
         return new ArrayList<>(profiles.values());
     }
 

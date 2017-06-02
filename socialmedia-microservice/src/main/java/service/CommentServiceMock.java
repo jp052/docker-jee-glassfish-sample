@@ -12,6 +12,10 @@ public class CommentServiceMock {
 
     Map<Long, Message> messages = DatabaseMock.getMessages();
 
+    public String test() {
+        return "CommentMockService";
+    }
+
     public Comment createComment(long messageId, Comment comment) {
         Map<Long, Comment> comments = getCommentsByMessageId(messageId);
         long commentId = comments.size() + 1;
@@ -40,7 +44,7 @@ public class CommentServiceMock {
         comments.remove(commentId);
     }
 
-    public List<Comment> listComment(long messageId) {
+    public List<Comment> listComments(long messageId) {
         Map<Long, Comment> comments = getCommentsByMessageId(messageId);
         return new ArrayList<>(comments.values());
     }
