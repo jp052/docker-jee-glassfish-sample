@@ -1,0 +1,36 @@
+FROM ubuntu
+#FROM phusion/baseimage
+
+# based on http://fabiorehm.com/blog/2014/09/11/running-gui-apps-with-docker/ and https://hub.docker.com/r/batmat/docker-eclipse/
+
+MAINTAINER jp052 <jan.p2001@gmail.com>
+
+# install curl to download java from oracle without package manager
+RUN apt-get update
+RUN apt-get -y install curl
+
+# Download JDK 7u65 from Oracle download site
+RUN cd /opt &&  curl -L 'http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz' -H 'Cookie: oraclelicense=accept-securebackup-cookie; gpw_e24=Dockerfile' | tar -xz
+
+#set Java environment variable
+ENV JAVA_HOME /opt/jdk1.8.0_131
+
+#create sybolic link from opt to usr
+RUN ln -s /opt/jdk1.8.0_131/bin/* /usr/local/bin/
+
+######Eclipse stuff##########
+
+RUN useradd -ms /bin/bash developer
+
+USER developer
+ENV HOME /home/developer
+
+WORKDIR /home/developer
+#RUN curl http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/3/eclipse-jee-neon-3-linux-gtk-x86_64.tar.gz | tar -xvz
+
+#install Standard Widget Toolkit for eclipse (check if it is really needed)
+RUN sudo apt-get update
+RUN sudo apt-get install libswt-gtk-3-java -y
+
+CMD /home/developer/eclipse/eclipse
+

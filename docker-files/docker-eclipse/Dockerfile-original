@@ -6,7 +6,7 @@ MAINTAINER Baptiste Mathus <batmat@batmat.net>
 
 # TODO : variabilize those values
 # Replace 1000 with your user / group id
-RUN export uid=1000 gid=1000 && \
+RUN export uid=1000 gid=50 && \
     mkdir -p /home/developer && \
     echo "developer:x:${uid}:${gid}:Developer,,,:/home/developer:/bin/bash" >> /etc/passwd && \
     echo "developer:x:${uid}:" >> /etc/group && \
@@ -17,11 +17,8 @@ RUN export uid=1000 gid=1000 && \
 USER developer
 ENV HOME /home/developer
 
-RUN export HTTP_PROXY=
-RUN export HTTPS_PROXY=
-
 WORKDIR /home/developer
-RUN curl http://mirrors.nic.cz/eclipse/technology/epp/downloads/release/luna/SR2/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz | tar -xvz
+RUN curl http://eclipse.mirror.rafal.ca/technology/epp/downloads/release/neon/R/eclipse-java-neon-R-linux-gtk-x86_64.tar.gz | tar -xvz
 
 RUN sudo apt-get update
 RUN sudo apt-get install libswt-gtk-3-java -y
