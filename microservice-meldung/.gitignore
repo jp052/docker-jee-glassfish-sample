@@ -3,7 +3,6 @@
 build/
 bin/
 target/
-libs/
 tmp/
 node_modules/
 jaxws/jaxws-client/src/main/
@@ -14,7 +13,6 @@ jaxws/jaxws-client/src/main/
 *.class
 
 # Package Files #
-*.jar
 *.war
 *.ear
 *.db
