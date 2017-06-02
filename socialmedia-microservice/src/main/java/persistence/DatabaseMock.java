@@ -1,5 +1,6 @@
 package persistence;
 
+import persistence.model.Comment;
 import persistence.model.Message;
 import persistence.model.Profile;
 
@@ -10,6 +11,7 @@ public class DatabaseMock {
 
     private static Map<Long, Message> messages = new HashMap<>();
     private static Map<String, Profile> profiles = new HashMap<>();
+    private static Map<Long, Comment> comments = new HashMap<>();
 
     public static Map<Long, Message> getMessages() {
         return messages;
@@ -17,5 +19,9 @@ public class DatabaseMock {
 
     public static Map<String, Profile> getProfiles() {
         return profiles;
+    }
+
+    public static Map<Long, Comment> getComments() {
+        return comments;
     }
 }

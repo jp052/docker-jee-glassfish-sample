@@ -1,6 +1,7 @@
 package resources;
 
 import persistence.model.Message;
+import resources.filter.MessageFilterBean;
 import service.MessageServiceMock;
 
 import javax.ejb.Stateless;
@@ -47,15 +48,21 @@ public class MessageResource {
     }
 
     @GET
-    public List<Message> list(  @QueryParam("year") int year,
-                                @QueryParam("start") int start,
-                                @QueryParam("size") int size) {
-        if(year > 0) {
-            return messageService.getAllMessagesByYear(year);
+    public List<Message> list(@BeanParam MessageFilterBean filterBean) {
+        if(filterBean.getYear() > 0) {
+            return messageService.getAllMessagesByYear(filterBean.getYear());
         }
-        if(start >= 0 & size > 0) {
-            return messageService.getAllMessagesPaginated(start, size);
+        if(filterBean.getStart() >= 0 & filterBean.getSize() > 0) {
+            return messageService.getAllMessagesPaginated(filterBean.getStart(), filterBean.getSize());
         }
         return messageService.getAllMessages();
+    }
+
+    /**
+     * This is how to implement a sub-resource, just return the resource class.
+     */
+    @Path("{messageId}/comments")
+    public CommentResource getCommentResource() {
+        return new CommentResource();
     }
 }

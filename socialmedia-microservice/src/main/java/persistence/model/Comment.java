@@ -1,28 +1,21 @@
 package persistence.model;
 
-
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-@XmlRootElement
-public class Message {
+public class Comment {
     private long id;
     private String message;
-    private Date created; //LocalDate not parsed by Json parser :-(
+    private Date created;
     private String author;
-    private Map<Long, Comment> comments = new HashMap<>();
 
-    public Message() {
+    public Comment() {
     }
 
-    public Message(long id, String message, String author) {
+    public Comment(long id, String message, String author) {
         this.id = id;
         this.message = message;
-        this.created = new Date();
         this.author = author;
+        this.created = new Date();
     }
 
     public long getId() {
@@ -55,14 +48,5 @@ public class Message {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    @XmlTransient //added to ignore the comments in the xml output when a message is returned in xml. It also works for json.
-    public Map<Long, Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(Map<Long, Comment> comments) {
-        this.comments = comments;
     }
 }
