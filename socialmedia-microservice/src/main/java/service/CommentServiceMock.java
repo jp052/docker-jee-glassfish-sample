@@ -13,7 +13,7 @@ public class CommentServiceMock {
     Map<Long, Message> messages = DatabaseMock.getMessages();
 
     public String test() {
-        return "CommentMockService";
+        return "payaraaaaaaaaaaaaaaa juhuu 4";
     }
 
     public Comment createComment(long messageId, Comment comment) {
