@@ -1,7 +1,9 @@
 package resources;
 
+import persistence.model.Comment;
 import persistence.model.Message;
 import resources.filter.MessageFilterBean;
+import service.CommentServiceMock;
 import service.MessageServiceMock;
 
 import javax.ejb.Stateless;
@@ -21,6 +23,9 @@ public class MessageResource {
 
     @Inject
     CommentResource commentSubResource;
+
+    @Inject
+    private CommentServiceMock commentService;
 
     @POST
     public Message create(Message message) {
@@ -64,8 +69,15 @@ public class MessageResource {
      * This is is the comment sub-resource of MessageResource. It delegates all calls to {messageId}/comments to the CommentResource.
      * The messageId can be access by the CommentResource using the @PathParam annotation.
      */
-    @Path("{messageId}/comments")
+    @Path("/{messageId}/comments")
     public CommentResource getCommentResource() {
         return commentSubResource;
+    }
+
+    @GET
+    @Path("/{messageId}/comments/listtest")
+    public List<Comment> list(@PathParam("messageId") long messageId) {
+        List<Comment> comments = commentService.listComments(messageId);
+        return comments;
     }
 }

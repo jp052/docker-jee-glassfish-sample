@@ -26,9 +26,9 @@ RUN yum -y install wget unzip java-1.8.0-openjdk-devel && \
 
 #Postgres client
 #Hibernate
-COPY shared/libraries/jboss-logging-3.3.0.Final.jar glassfish4/glassfish/modules/jboss-logging.jar
+#COPY shared/libraries/jboss-logging-3.3.0.Final.jar glassfish4/glassfish/modules/jboss-logging.jar
 
-COPY shared/libraries/* glassfish4/glassfish/domains/domain1/lib/
+#COPY shared/libraries/* glassfish4/glassfish/domains/domain1/lib/
 
 #Execute Glassfish configs
 COPY glassfish-custom-config.sh /glassfish-custom-config.sh

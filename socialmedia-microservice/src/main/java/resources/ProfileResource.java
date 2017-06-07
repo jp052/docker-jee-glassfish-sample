@@ -1,13 +1,17 @@
 package resources;
 
+import persistence.model.Comment;
 import persistence.model.Profile;
+import service.CommentServiceMock;
 import service.ProfileServiceMock;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+@Stateless
 @Path("/profiles")
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -15,6 +19,9 @@ public class ProfileResource {
 
     @Inject
     private ProfileServiceMock profileService;
+
+    @Inject
+    private CommentServiceMock commentService;
 
     @POST
     public Profile createProfile(Profile profile) {
@@ -48,6 +55,13 @@ public class ProfileResource {
     public List<Profile> listProfile() {
         List<Profile> allProfiles = profileService.listProfiles();
         return allProfiles;
+    }
+
+    @GET
+    @Path("/list/comments")
+    public List<Comment> listComments() {
+        List<Comment> allComments = commentService.listComments(1);
+        return allComments;
     }
 
 }
