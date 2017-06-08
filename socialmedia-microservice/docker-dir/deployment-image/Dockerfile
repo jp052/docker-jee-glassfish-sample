@@ -16,3 +16,6 @@ COPY /shared/socialmedia-microservice-1.0.war /opt/payara41/deployments/socialme
 # Expose debug port
 EXPOSE 9009
 
+#ENTRYPOINT copied from https://github.com/payara/docker-payaraserver-full/blob/172/Dockerfile and modified with the --debug command.
+#Maybe there is a nicer solution, just adding CMD ["--debug"] did not work.
+ENTRYPOINT ${PAYARA_PATH}/generate_deploy_commands.sh && ${PAYARA_PATH}/bin/asadmin start-domain --verbose --debug --postbootcommandfile ${DEPLOY_COMMANDS} ${PAYARA_DOMAIN}

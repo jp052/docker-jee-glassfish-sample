@@ -70,9 +70,13 @@ public class MessageResource {
      * The messageId can be access by the CommentResource using the @PathParam annotation.
      */
     @Path("/{messageId}/comments")
-    public CommentResource getCommentResource() {
-        return commentSubResource;
+    public Class<CommentResource> getCommentResource() {
+        return CommentResource.class;
     }
+
+//    public CommentResource getCommentResource() {
+//        return commentSubResource;
+//    }
 
     @GET
     @Path("/{messageId}/comments/listtest")
